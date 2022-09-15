@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
+import { useStateContext } from "./contexts/ContextProvider";
 import {
   Ecommerce,
   Orders,
@@ -24,7 +25,7 @@ import {
 
 import "./App.css";
 const App = () => {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
   return (
     <div>
       <BrowserRouter>
@@ -41,6 +42,7 @@ const App = () => {
               </button>
             </TooltipComponent>
           </div>
+
           {/* Sidebar */}
           {activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
@@ -55,11 +57,13 @@ const App = () => {
               activeMenu ? " md:ml-72 " : " flex-2"
             }`}
           >
+            {/* Navbar */}
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
-              Navbar
+              <Navbar />
             </div>
           </div>
 
+          {/* Routes for the webpage url */}
           <div>
             <Routes>
               {/* Dashboard */}
